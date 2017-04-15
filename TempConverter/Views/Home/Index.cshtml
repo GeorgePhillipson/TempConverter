@@ -1,0 +1,36 @@
+﻿@model TempConverter.Models.TemperatureConverterViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div>
+    <form action="@Url.Action("Index", "Home")" method="post">
+        @Html.ValidationSummary(false)
+        @Html.LabelFor(x => x.StartingTemp)<br/>
+        @Html.TextBoxFor(x => x.StartingTemp)<br/>
+        @Html.LabelFor(x => x.ConversionType)<br/>
+        @Html.DropDownList("conversionType")<br/>
+        <input type="submit" value="Convert">
+
+    </form>
+    @if(Model?.Temp != null)
+    {
+        <ul>
+            @foreach (var t in Model.Temp)
+            {
+                <li>@t.ToString()</li>
+            }
+        </ul>
+    }
+
+</div>
+</body>
+</html>
